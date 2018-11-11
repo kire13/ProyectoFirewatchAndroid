@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "----", Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "otro", Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "tercer", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "cuarto", Toast.LENGTH_SHORT).show();
         String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",
                 "Dispositivo2",

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         lv_dispositivos=findViewById(R.id.lv_dispositivos);
         bt_sincronizar=findViewById(R.id.bt_sincronizar);
-        // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!! // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
+        // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!! // PUSHHHHHHhHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
         // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
         // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
         // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!

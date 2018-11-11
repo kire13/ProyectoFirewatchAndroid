@@ -26,7 +26,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cl.firewatch.firewatch.HomeActivity" />
         </activity>
-        <activity android:name=".borrar"></activity>
     </application>
 
 </manifest>

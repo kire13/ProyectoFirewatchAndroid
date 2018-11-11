@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 "Dispositivo2",
                 "Dispositivo2",
                 "Dispositivo2",
-                "Dispositivo2",
+                "Dispositivo6",
                 "Dispositivo3",
                 "Dispositivo4"};
 

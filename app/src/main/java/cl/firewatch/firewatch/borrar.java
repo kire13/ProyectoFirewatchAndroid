@@ -10,6 +10,6 @@ public class borrar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrar);
-        Toast.makeText(this, "borrarrrrrrrrrrrr", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "borrarrrrrrrrrrrrrr", Toast.LENGTH_SHORT).show();
     }
 }

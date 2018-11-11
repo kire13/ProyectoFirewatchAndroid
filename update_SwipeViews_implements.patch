@@ -1,0 +1,916 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision e0df0cbfee54541d5dcc3f64e995417b2d843420)
++++ app/src/main/AndroidManifest.xml	(date 1541782668449)
+@@ -16,6 +16,16 @@
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
++        <activity android:name=".HomeActivity" />
++        <activity
++            android:name=".SwipeActivity"
++            android:label="@string/title_activity_swipe"
++            android:parentActivityName=".HomeActivity"
++            android:theme="@style/AppTheme.NoActionBar">
++            <meta-data
++                android:name="android.support.PARENT_ACTIVITY"
++                android:value="cl.firewatch.firewatch.HomeActivity" />
++        </activity>
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/java/cl/firewatch/firewatch/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/cl/firewatch/firewatch/MainActivity.java	(revision e0df0cbfee54541d5dcc3f64e995417b2d843420)
++++ app/src/main/java/cl/firewatch/firewatch/MainActivity.java	(date 1541790473283)
+@@ -1,21 +1,26 @@
+ package cl.firewatch.firewatch;
+ 
++import android.content.Intent;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
++import android.view.View;
+ import android.widget.ArrayAdapter;
++import android.widget.Button;
+ import android.widget.ListView;
+ import android.widget.Toast;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+     ListView lv_dispositivos;
++    //Button bt_sincronizar;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+-
+         lv_dispositivos=findViewById(R.id.lv_dispositivos);
++        //bt_sincronizar=findViewById(R.id.bt_sincronizar);
++
+         String[] dispositivos={                             //cambiar a arralist de dispositivos
+                 "Dispositivo1",
+                 "Dispositivo2",
+@@ -29,5 +34,10 @@
+         ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,dispositivos);
+         lv_dispositivos.setAdapter(adapter);
+ 
++    }
++
++    public void Sicronizar(View view) {//Cambiar a HOME
++        Intent intent=new Intent(this, HomeActivity.class);
++        startActivity(intent);
+     }
+ }
+Index: app/src/main/res/layout/fragment_monitor.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_monitor.xml	(date 1541788495850)
++++ app/src/main/res/layout/fragment_monitor.xml	(date 1541788495850)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MonitorFragment">
++
++    <!-- TODO: Update blank fragment layout -->
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:text="Monitorizar" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_control.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_control.xml	(date 1541788480818)
++++ app/src/main/res/layout/fragment_control.xml	(date 1541788480818)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ControlFragment">
++
++    <!-- TODO: Update blank fragment layout -->
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:text="Controlar" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/cl/firewatch/firewatch/ControlFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/cl/firewatch/firewatch/ControlFragment.java	(date 1541786786210)
++++ app/src/main/java/cl/firewatch/firewatch/ControlFragment.java	(date 1541786786210)
+@@ -0,0 +1,108 @@
++package cl.firewatch.firewatch;
++
++import android.content.Context;
++import android.net.Uri;
++import android.os.Bundle;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++
++/**
++ * A simple {@link Fragment} subclass.
++ * Activities that contain this fragment must implement the
++ * {@link ControlFragment.OnFragmentInteractionListener} interface
++ * to handle interaction events.
++ * Use the {@link ControlFragment#newInstance} factory method to
++ * create an instance of this fragment.
++ */
++public class ControlFragment extends Fragment {
++    // TODO: Rename parameter arguments, choose names that match
++    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++    private static final String ARG_PARAM1 = "param1";
++    private static final String ARG_PARAM2 = "param2";
++
++    // TODO: Rename and change types of parameters
++    private String mParam1;
++    private String mParam2;
++
++    private OnFragmentInteractionListener mListener;
++
++    public ControlFragment() {
++        // Required empty public constructor
++    }
++
++    /**
++     * Use this factory method to create a new instance of
++     * this fragment using the provided parameters.
++     *
++     * @param param1 Parameter 1.
++     * @param param2 Parameter 2.
++     * @return A new instance of fragment ControlFragment.
++     */
++    // TODO: Rename and change types and number of parameters
++    public static ControlFragment newInstance(String param1, String param2) {
++        ControlFragment fragment = new ControlFragment();
++        Bundle args = new Bundle();
++        args.putString(ARG_PARAM1, param1);
++        args.putString(ARG_PARAM2, param2);
++        fragment.setArguments(args);
++        return fragment;
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        if (getArguments() != null) {
++            mParam1 = getArguments().getString(ARG_PARAM1);
++            mParam2 = getArguments().getString(ARG_PARAM2);
++        }
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_control, container, false);
++    }
++
++    // TODO: Rename method, update argument and hook method into UI event
++    public void onButtonPressed(Uri uri) {
++        if (mListener != null) {
++            mListener.onFragmentInteraction(uri);
++        }
++    }
++
++    @Override
++    public void onAttach(Context context) {
++        super.onAttach(context);
++        if (context instanceof OnFragmentInteractionListener) {
++            mListener = (OnFragmentInteractionListener) context;
++        } else {
++            throw new RuntimeException(context.toString()
++                    + " must implement OnFragmentInteractionListener");
++        }
++    }
++
++    @Override
++    public void onDetach() {
++        super.onDetach();
++        mListener = null;
++    }
++
++    /**
++     * This interface must be implemented by activities that contain this
++     * fragment to allow an interaction in this fragment to be communicated
++     * to the activity and potentially other fragments contained in that
++     * activity.
++     * <p>
++     * See the Android Training lesson <a href=
++     * "http://developer.android.com/training/basics/fragments/communicating.html"
++     * >Communicating with Other Fragments</a> for more information.
++     */
++    public interface OnFragmentInteractionListener {
++        // TODO: Update argument type and name
++        void onFragmentInteraction(Uri uri);
++    }
++}
+Index: app/src/main/java/cl/firewatch/firewatch/MonitorFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/cl/firewatch/firewatch/MonitorFragment.java	(date 1541786678927)
++++ app/src/main/java/cl/firewatch/firewatch/MonitorFragment.java	(date 1541786678927)
+@@ -0,0 +1,108 @@
++package cl.firewatch.firewatch;
++
++import android.content.Context;
++import android.net.Uri;
++import android.os.Bundle;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++
++/**
++ * A simple {@link Fragment} subclass.
++ * Activities that contain this fragment must implement the
++ * {@link MonitorFragment.OnFragmentInteractionListener} interface
++ * to handle interaction events.
++ * Use the {@link MonitorFragment#newInstance} factory method to
++ * create an instance of this fragment.
++ */
++public class MonitorFragment extends Fragment {
++    // TODO: Rename parameter arguments, choose names that match
++    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++    private static final String ARG_PARAM1 = "param1";
++    private static final String ARG_PARAM2 = "param2";
++
++    // TODO: Rename and change types of parameters
++    private String mParam1;
++    private String mParam2;
++
++    private OnFragmentInteractionListener mListener;
++
++    public MonitorFragment() {
++        // Required empty public constructor
++    }
++
++    /**
++     * Use this factory method to create a new instance of
++     * this fragment using the provided parameters.
++     *
++     * @param param1 Parameter 1.
++     * @param param2 Parameter 2.
++     * @return A new instance of fragment MonitorFragment.
++     */
++    // TODO: Rename and change types and number of parameters
++    public static MonitorFragment newInstance(String param1, String param2) {
++        MonitorFragment fragment = new MonitorFragment();
++        Bundle args = new Bundle();
++        args.putString(ARG_PARAM1, param1);
++        args.putString(ARG_PARAM2, param2);
++        fragment.setArguments(args);
++        return fragment;
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        if (getArguments() != null) {
++            mParam1 = getArguments().getString(ARG_PARAM1);
++            mParam2 = getArguments().getString(ARG_PARAM2);
++        }
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_monitor, container, false);
++    }
++
++    // TODO: Rename method, update argument and hook method into UI event
++    public void onButtonPressed(Uri uri) {
++        if (mListener != null) {
++            mListener.onFragmentInteraction(uri);
++        }
++    }
++
++    @Override
++    public void onAttach(Context context) {
++        super.onAttach(context);
++        if (context instanceof OnFragmentInteractionListener) {
++            mListener = (OnFragmentInteractionListener) context;
++        } else {
++            throw new RuntimeException(context.toString()
++                    + " must implement OnFragmentInteractionListener");
++        }
++    }
++
++    @Override
++    public void onDetach() {
++        super.onDetach();
++        mListener = null;
++    }
++
++    /**
++     * This interface must be implemented by activities that contain this
++     * fragment to allow an interaction in this fragment to be communicated
++     * to the activity and potentially other fragments contained in that
++     * activity.
++     * <p>
++     * See the Android Training lesson <a href=
++     * "http://developer.android.com/training/basics/fragments/communicating.html"
++     * >Communicating with Other Fragments</a> for more information.
++     */
++    public interface OnFragmentInteractionListener {
++        // TODO: Update argument type and name
++        void onFragmentInteraction(Uri uri);
++    }
++}
+Index: app/src/main/java/cl/firewatch/firewatch/SeguirFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/cl/firewatch/firewatch/SeguirFragment.java	(date 1541787033372)
++++ app/src/main/java/cl/firewatch/firewatch/SeguirFragment.java	(date 1541787033372)
+@@ -0,0 +1,108 @@
++package cl.firewatch.firewatch;
++
++import android.content.Context;
++import android.net.Uri;
++import android.os.Bundle;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++
++/**
++ * A simple {@link Fragment} subclass.
++ * Activities that contain this fragment must implement the
++ * {@link SeguirFragment.OnFragmentInteractionListener} interface
++ * to handle interaction events.
++ * Use the {@link SeguirFragment#newInstance} factory method to
++ * create an instance of this fragment.
++ */
++public class SeguirFragment extends Fragment {
++    // TODO: Rename parameter arguments, choose names that match
++    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
++    private static final String ARG_PARAM1 = "param1";
++    private static final String ARG_PARAM2 = "param2";
++
++    // TODO: Rename and change types of parameters
++    private String mParam1;
++    private String mParam2;
++
++    private OnFragmentInteractionListener mListener;
++
++    public SeguirFragment() {
++        // Required empty public constructor
++    }
++
++    /**
++     * Use this factory method to create a new instance of
++     * this fragment using the provided parameters.
++     *
++     * @param param1 Parameter 1.
++     * @param param2 Parameter 2.
++     * @return A new instance of fragment SeguirFragment.
++     */
++    // TODO: Rename and change types and number of parameters
++    public static SeguirFragment newInstance(String param1, String param2) {
++        SeguirFragment fragment = new SeguirFragment();
++        Bundle args = new Bundle();
++        args.putString(ARG_PARAM1, param1);
++        args.putString(ARG_PARAM2, param2);
++        fragment.setArguments(args);
++        return fragment;
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        if (getArguments() != null) {
++            mParam1 = getArguments().getString(ARG_PARAM1);
++            mParam2 = getArguments().getString(ARG_PARAM2);
++        }
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.fragment_seguir, container, false);
++    }
++
++    // TODO: Rename method, update argument and hook method into UI event
++    public void onButtonPressed(Uri uri) {
++        if (mListener != null) {
++            mListener.onFragmentInteraction(uri);
++        }
++    }
++
++    @Override
++    public void onAttach(Context context) {
++        super.onAttach(context);
++        if (context instanceof OnFragmentInteractionListener) {
++            mListener = (OnFragmentInteractionListener) context;
++        } else {
++            throw new RuntimeException(context.toString()
++                    + " must implement OnFragmentInteractionListener");
++        }
++    }
++
++    @Override
++    public void onDetach() {
++        super.onDetach();
++        mListener = null;
++    }
++
++    /**
++     * This interface must be implemented by activities that contain this
++     * fragment to allow an interaction in this fragment to be communicated
++     * to the activity and potentially other fragments contained in that
++     * activity.
++     * <p>
++     * See the Android Training lesson <a href=
++     * "http://developer.android.com/training/basics/fragments/communicating.html"
++     * >Communicating with Other Fragments</a> for more information.
++     */
++    public interface OnFragmentInteractionListener {
++        // TODO: Update argument type and name
++        void onFragmentInteraction(Uri uri);
++    }
++}
+Index: app/src/main/res/layout/fragment_seguir.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_seguir.xml	(date 1541788699535)
++++ app/src/main/res/layout/fragment_seguir.xml	(date 1541788699535)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".SeguirFragment">
++
++    <!-- TODO: Update blank fragment layout -->
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:text="Seguimiento" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision e0df0cbfee54541d5dcc3f64e995417b2d843420)
++++ app/src/main/res/layout/activity_main.xml	(date 1541788962475)
+@@ -35,7 +35,9 @@
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="65dp"
+         android:text="Sincronizar"
+-        android:textAppearance="@style/TextAppearance.AppCompat" />
++        android:textAppearance="@style/TextAppearance.AppCompat"
++        android:onClick="Sicronizar"
++        />
+ 
+ 
+ 
+Index: app/src/main/res/menu/menu_swipe.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_swipe.xml	(date 1541782668766)
++++ app/src/main/res/menu/menu_swipe.xml	(date 1541782668766)
+@@ -0,0 +1,10 @@
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    tools:context="cl.firewatch.firewatch.SwipeActivity">
++    <item
++        android:id="@+id/action_settings"
++        android:orderInCategory="100"
++        android:title="@string/action_settings"
++        app:showAsAction="never" />
++</menu>
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision e0df0cbfee54541d5dcc3f64e995417b2d843420)
++++ app/build.gradle	(date 1541782667686)
+@@ -23,6 +23,7 @@
+     implementation 'com.android.support:appcompat-v7:27.1.1'
+     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+     implementation 'com.android.support:support-v4:27.1.1'
++    implementation 'com.android.support:design:27.1.1'
+     testImplementation 'junit:junit:4.12'
+     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+Index: app/src/main/res/layout/activity_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_home.xml	(date 1541789473285)
++++ app/src/main/res/layout/activity_home.xml	(date 1541789473285)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".HomeActivity">
++
++    <Button
++        android:id="@+id/bt_monitor"
++        android:text="Monitor"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:onClick="Monitorizar"
++        />
++
++</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(date 1541782667027)
++++ app/src/main/res/values/dimens.xml	(date 1541782667027)
+@@ -0,0 +1,7 @@
++<resources>
++    <!-- Default screen margins, per the Android Design guidelines. -->
++    <dimen name="activity_horizontal_margin">16dp</dimen>
++    <dimen name="activity_vertical_margin">16dp</dimen>
++    <dimen name="fab_margin">16dp</dimen>
++    <dimen name="appbar_padding_top">8dp</dimen>
++</resources>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision e0df0cbfee54541d5dcc3f64e995417b2d843420)
++++ app/src/main/res/values/strings.xml	(date 1541786678980)
+@@ -4,4 +4,10 @@
+     <string name="title_activity_inicio">InicioActivity</string>
+     <string name="dummy_button">Dummy Button</string>
+     <string name="dummy_content">DUMMY\nCONTENT</string>
++    <string name="title_activity_swipe">SwipeActivity</string>
++    <string name="action_settings">Settings</string>
++    <string name="section_format">Hello World from section: %1$d</string>
++
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
+ </resources>
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision e0df0cbfee54541d5dcc3f64e995417b2d843420)
++++ app/src/main/res/values/styles.xml	(date 1541782668525)
+@@ -20,4 +20,13 @@
+         <item name="android:background">@color/black_overlay</item>
+     </style>
+ 
++    <style name="AppTheme.NoActionBar">
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++    </style>
++
++    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
++
++    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
++
+ </resources>
+Index: app/src/main/res/layout/activity_swipe.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_swipe.xml	(date 1541782668597)
++++ app/src/main/res/layout/activity_swipe.xml	(date 1541782668597)
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/main_content"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fitsSystemWindows="true"
++    tools:context=".SwipeActivity">
++
++    <android.support.design.widget.AppBarLayout
++        android:id="@+id/appbar"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:paddingTop="@dimen/appbar_padding_top"
++        android:theme="@style/AppTheme.AppBarOverlay">
++
++        <android.support.v7.widget.Toolbar
++            android:id="@+id/toolbar"
++            android:layout_width="match_parent"
++            android:layout_height="?attr/actionBarSize"
++            android:layout_weight="1"
++            android:background="?attr/colorPrimary"
++            app:layout_scrollFlags="scroll|enterAlways"
++            app:popupTheme="@style/AppTheme.PopupOverlay"
++            app:title="@string/app_name">
++
++        </android.support.v7.widget.Toolbar>
++
++    </android.support.design.widget.AppBarLayout>
++
++    <android.support.v4.view.ViewPager
++        android:id="@+id/container"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
++
++    <android.support.design.widget.FloatingActionButton
++        android:id="@+id/fab"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_gravity="end|bottom"
++        android:layout_margin="@dimen/fab_margin"
++        app:srcCompat="@android:drawable/ic_dialog_email" />
++
++</android.support.design.widget.CoordinatorLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_swipe.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_swipe.xml	(date 1541782668722)
++++ app/src/main/res/layout/fragment_swipe.xml	(date 1541782668722)
+@@ -0,0 +1,23 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/constraintLayout"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".SwipeActivity$PlaceholderFragment">
++
++    <TextView
++        android:id="@+id/section_label"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="@dimen/activity_horizontal_margin"
++        android:layout_marginTop="@dimen/activity_vertical_margin"
++        android:layout_marginEnd="@dimen/activity_horizontal_margin"
++        android:layout_marginBottom="@dimen/activity_vertical_margin"
++        app:layout_constraintLeft_toLeftOf="parent"
++        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
++        tools:layout_constraintLeft_creator="1"
++        tools:layout_constraintTop_creator="1" />
++
++</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/cl/firewatch/firewatch/HomeActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/cl/firewatch/firewatch/HomeActivity.java	(date 1541789491724)
++++ app/src/main/java/cl/firewatch/firewatch/HomeActivity.java	(date 1541789491724)
+@@ -0,0 +1,20 @@
++package cl.firewatch.firewatch;
++
++import android.content.Intent;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.view.View;
++
++public class HomeActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_home);
++    }
++
++    public void Monitorizar(View view) {
++        Intent intent = new Intent(this, SwipeActivity.class);
++        startActivity(intent);
++    }
++}
+Index: app/src/main/res/values-w820dp/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-w820dp/dimens.xml	(date 1541782667132)
++++ app/src/main/res/values-w820dp/dimens.xml	(date 1541782667132)
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
++         (such as screen margins) for screens with more than 820dp of available width. This
++         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
++    <dimen name="activity_horizontal_margin">64dp</dimen>
++</resources>
+Index: app/src/main/java/cl/firewatch/firewatch/SwipeActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/cl/firewatch/firewatch/SwipeActivity.java	(date 1541791259957)
++++ app/src/main/java/cl/firewatch/firewatch/SwipeActivity.java	(date 1541791259957)
+@@ -0,0 +1,160 @@
++package cl.firewatch.firewatch;
++
++import android.net.Uri;
++import android.support.design.widget.FloatingActionButton;
++import android.support.design.widget.Snackbar;
++import android.support.v7.app.AppCompatActivity;
++import android.support.v7.widget.Toolbar;
++
++import android.support.v4.app.Fragment;
++import android.support.v4.app.FragmentManager;
++import android.support.v4.app.FragmentPagerAdapter;
++import android.support.v4.view.ViewPager;
++import android.os.Bundle;
++import android.view.LayoutInflater;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.view.ViewGroup;
++
++import android.widget.TextView;
++
++public class SwipeActivity extends AppCompatActivity
++        implements MonitorFragment.OnFragmentInteractionListener,ControlFragment.OnFragmentInteractionListener,SeguirFragment.OnFragmentInteractionListener {
++
++    /**
++     * The {@link android.support.v4.view.PagerAdapter} that will provide
++     * fragments for each of the sections. We use a
++     * {@link FragmentPagerAdapter} derivative, which will keep every
++     * loaded fragment in memory. If this becomes too memory intensive, it
++     * may be best to switch to a
++     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
++     */
++    private SectionsPagerAdapter mSectionsPagerAdapter;
++
++    /**
++     * The {@link ViewPager} that will host the section contents.
++     */
++    private ViewPager mViewPager;
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_swipe);
++
++        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
++        setSupportActionBar(toolbar);
++        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
++        // Create the adapter that will return a fragment for each of the three
++        // primary sections of the activity.
++        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
++
++        // Set up the ViewPager with the sections adapter.
++        mViewPager = (ViewPager) findViewById(R.id.container);
++        mViewPager.setAdapter(mSectionsPagerAdapter);
++
++        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
++        fab.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
++                        .setAction("Action", null).show();
++            }
++        });
++
++    }
++
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        // Inflate the menu; this adds items to the action bar if it is present.
++        getMenuInflater().inflate(R.menu.menu_swipe, menu);
++        return true;
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        // Handle action bar item clicks here. The action bar will
++        // automatically handle clicks on the Home/Up button, so long
++        // as you specify a parent activity in AndroidManifest.xml.
++        int id = item.getItemId();
++
++        //noinspection SimplifiableIfStatement
++        if (id == R.id.action_settings) {
++            return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
++
++    @Override
++    public void onFragmentInteraction(Uri uri) {
++
++    }
++
++    /**
++     * A placeholder fragment containing a simple view.
++     */
++    public static class PlaceholderFragment extends Fragment {
++        /**
++         * The fragment argument representing the section number for this
++         * fragment.
++         */
++        private static final String ARG_SECTION_NUMBER = "section_number";
++
++        public PlaceholderFragment() {
++        }
++
++        /**
++         * Returns a new instance of this fragment for the given section
++         * number.
++         */
++        public static Fragment newInstance(int sectionNumber) {
++            Fragment fragment=null;
++
++            switch (sectionNumber){
++                case 1: fragment=new MonitorFragment();
++                break;
++                case 2: fragment=new ControlFragment();
++                break;
++                case 3: fragment=new SeguirFragment();
++                break;
++            }
++            return fragment;
++
++        }
++
++        @Override
++        public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                                 Bundle savedInstanceState) {
++            View rootView = inflater.inflate(R.layout.fragment_swipe, container, false);
++            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
++            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
++            return rootView;
++        }
++    }
++
++    /**
++     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
++     * one of the sections/tabs/pages.
++     */
++    public class SectionsPagerAdapter extends FragmentPagerAdapter {
++
++        public SectionsPagerAdapter(FragmentManager fm) {
++            super(fm);
++        }
++
++        @Override
++        public Fragment getItem(int position) {
++            // getItem is called to instantiate the fragment for the given page.
++            // Return a PlaceholderFragment (defined as a static inner class below).
++            return PlaceholderFragment.newInstance(position + 1);
++        }
++
++        @Override
++        public int getCount() {
++            // Show 3 total pages.
++            return 3;
++        }
++    }
++}

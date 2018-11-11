@@ -20,10 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         lv_dispositivos=findViewById(R.id.lv_dispositivos);
         bt_sincronizar=findViewById(R.id.bt_sincronizar);
-        //TEST UPDATE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        Toast.makeText(this, "editado borrar , borrar2",Toast.LENGTH_SHORT).show();
 
-        String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!! TEST PUSH cTRL K
+        Toast.makeText(this, "----", Toast.LENGTH_SHORT).show();
+        String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",
                 "Dispositivo2",
                 "Dispositivo2",

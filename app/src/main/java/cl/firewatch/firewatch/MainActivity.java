@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         lv_dispositivos = findViewById(R.id.lv_dispositivos);
         bt_sincronizar = findViewById(R.id.bt_sincronizar);
 
-        //1   //1
+        //1   //1 //1
         //2   ///////2
         // X5
         //X6

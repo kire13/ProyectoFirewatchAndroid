@@ -31,7 +31,7 @@ public class HumoAdapter extends RecyclerView.Adapter<HumoAdapter.ViewHolderSect
     }
 
     @Override
-    public int getItemCount() {//tamaño total de la lista
+    public int getItemCount() {//tamaño total de la lista frfsdf TEST!!!!!!PUSH!!!
         return sectores.size();
     }
 

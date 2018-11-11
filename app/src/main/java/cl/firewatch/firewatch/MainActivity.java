@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "editado borrar , borrar2",Toast.LENGTH_SHORT).show();
 
-        String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!!
+        String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!! TEST PUSH cTRL K
                 "Dispositivo1",
                 "Dispositivo2",
                 "Dispositivo2",

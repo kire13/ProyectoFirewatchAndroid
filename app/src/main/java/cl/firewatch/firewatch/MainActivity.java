@@ -12,14 +12,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv_dispositivos;
-    //Button bt_sincronizar;
+    Button bt_sincronizar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv_dispositivos=findViewById(R.id.lv_dispositivos);
-        //bt_sincronizar=findViewById(R.id.bt_sincronizar);
+        bt_sincronizar=findViewById(R.id.bt_sincronizar);
 
         String[] dispositivos={                             //cambiar a arralist de dispositivos
                 "Dispositivo1",

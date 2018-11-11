@@ -7,10 +7,10 @@
     tools:context=".HomeActivity">
 
     <Button
-        android:id="@+id/bt_monitor"
-        android:text="Monitor"
+        android:id="@+id/bt_monitorizar"
+        android:text="Monitorizar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="Monitorizar"
         />
 

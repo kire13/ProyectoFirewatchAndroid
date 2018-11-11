@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         bt_sincronizar = findViewById(R.id.bt_sincronizar);
 
         //1
-
+        //2
         // X5
         String[] dispositivos = {                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",

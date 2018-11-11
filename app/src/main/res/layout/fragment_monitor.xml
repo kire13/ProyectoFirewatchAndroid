@@ -16,8 +16,39 @@
         />
     
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_humo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        ></android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:text="Humedad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_humedad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:orientation="horizontal"
+        android:scrollbars="horizontal"
+        ></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:text="Temperatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_temperatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
         ></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

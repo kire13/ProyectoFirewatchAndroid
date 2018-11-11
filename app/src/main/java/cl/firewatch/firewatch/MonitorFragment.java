@@ -4,9 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,6 +22,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MonitorFragment extends Fragment {
+
+    ArrayList<String> sectores;
+    RecyclerView rv_humo;
+    RecyclerView rv_humedad;
+    RecyclerView rv_temperatura;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,13 +68,40 @@ public class MonitorFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_monitor, container, false);
+
+        View view =inflater.inflate(R.layout.fragment_monitor, container, false);
+
+        /*
+        rv_humo=view.findViewById(R.id.rv_humo);
+        rv_humedad=view.findViewById(R.id.rv_humedad);
+        rv_temperatura=view.findViewById(R.id.rv_temperatura);
+        rv_humo.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));//set horizontal list
+        rv_humedad.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        rv_temperatura.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+        sectores=new ArrayList<>();
+        for(int i=0;i<10;i++){
+            sectores.add(" Sector "+(i+1));
+        }
+        HumoAdapter humoAdapter=new HumoAdapter(sectores);
+        HumedadAdapter humedadAdapter=new HumedadAdapter(sectores);
+        TemperaturaAdapter temperaturaAdapter =new TemperaturaAdapter(sectores);
+        rv_humo.setAdapter(humoAdapter);
+        rv_temperatura.setAdapter(humedadAdapter);
+        rv_humedad.setAdapter(temperaturaAdapter);
+
+        */
+        SetListHumo(view);
+        SetListHumedad(view);
+        SetListTemperatura(view);
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +141,37 @@ public class MonitorFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private ArrayList<String> AgregarSectores(){//cambiar por sectores de cada tipo de lista para filtrar...
+        ArrayList<String> sectoreslist=new ArrayList<>();
+        for(int i=0;i<10;i++){
+            sectoreslist.add(" Sector "+(i+1));
+        }
+        return sectoreslist;
+    }
+
+    private void SetListHumo(View view){
+        rv_humo=view.findViewById(R.id.rv_humo);
+        rv_humo.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        sectores=AgregarSectores();
+        HumoAdapter humoAdapter=new HumoAdapter(sectores);
+        rv_humo.setAdapter(humoAdapter);
+    }
+
+    private void SetListHumedad(View view){
+        rv_humedad=view.findViewById(R.id.rv_humedad);
+        rv_humedad.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        sectores=AgregarSectores();
+        HumedadAdapter humedadAdapter=new HumedadAdapter(sectores);
+        rv_humedad.setAdapter(humedadAdapter);
+    }
+
+    private void SetListTemperatura(View view){
+        rv_temperatura=view.findViewById(R.id.rv_temperatura);
+        rv_temperatura.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        ArrayList<String> sectores_temperatura=AgregarSectores();
+        TemperaturaAdapter temperaturaAdapter=new TemperaturaAdapter(sectores_temperatura);
+        rv_temperatura.setAdapter(temperaturaAdapter);
     }
 }

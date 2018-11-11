@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
                 "Dispositivo2",
                 "Dispositivo2",
                 "Dispositivo2",
-                "Dispositivo2",
-                "Dispositivo3"};
+                "Dispositivo3",
+                "Dispositivo4"};
 
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,dispositivos);
         lv_dispositivos.setAdapter(adapter);

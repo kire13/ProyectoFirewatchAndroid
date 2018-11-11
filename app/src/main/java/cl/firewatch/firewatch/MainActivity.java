@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         lv_dispositivos = findViewById(R.id.lv_dispositivos);
         bt_sincronizar = findViewById(R.id.bt_sincronizar);
 
-        //1   //1 //1
-        //2   ///////2
-        // X5 //kz
-        //X6  //kz
+        //1   //1 //1   //y
+        //2   ///////2 //y
+         // X5 //kz    //y
+        //X6  //kz   //y
         String[] dispositivos = {                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",
                 "Dispositivo2",

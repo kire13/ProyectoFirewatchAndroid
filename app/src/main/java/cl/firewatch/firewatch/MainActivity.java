@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         lv_dispositivos=findViewById(R.id.lv_dispositivos);
         bt_sincronizar=findViewById(R.id.bt_sincronizar);
         // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
+        // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
+        // PUSHHHHHHHHHHHHHHHHHHHHHHHHH"""""""""""""""!!!!
 
         Toast.makeText(this, "!!!!!!???????", Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "WWWWWWWWWWWW", Toast.LENGTH_SHORT).show();

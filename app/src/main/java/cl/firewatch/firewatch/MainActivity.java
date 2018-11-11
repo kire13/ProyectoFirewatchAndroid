@@ -18,13 +18,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lv_dispositivos=findViewById(R.id.lv_dispositivos);
-        bt_sincronizar=findViewById(R.id.bt_sincronizar);
+        lv_dispositivos = findViewById(R.id.lv_dispositivos);
+        bt_sincronizar = findViewById(R.id.bt_sincronizar);
 
-        Toast.makeText(this, "!!!!!!???????", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "YYYYYYXXXXXX", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "ZZZZZZZZZZZZ", Toast.LENGTH_SHORT).show();
-        String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!!
+        Toast.makeText(this, "!!!!!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ZZZZZZZZZZZZZ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "XKZ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "XKZ", Toast.LENGTH_SHORT).show();
+
+//        a
+//        b
+//        c
+//        d
+//        e
+//        f
+//        z
+//        x
+//        k
+//        z
+        String[] dispositivos = {                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",
                 "Dispositivo2",
                 "Dispositivo2",
@@ -34,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 "Dispositivo3",
                 "Dispositivo4"};
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,dispositivos);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dispositivos);
         lv_dispositivos.setAdapter(adapter);
 
     }
 
     public void Sicronizar(View view) {//Cambiar a HOME
-        Intent intent=new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

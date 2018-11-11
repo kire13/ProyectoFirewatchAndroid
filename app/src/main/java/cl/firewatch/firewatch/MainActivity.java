@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         //1   //1 //1
         //2   ///////2
-        // X5
-        //X6
+        // X5 //kz
+        //X6  //kz
         String[] dispositivos = {                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",
                 "Dispositivo2",

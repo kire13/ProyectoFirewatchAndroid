@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         lv_dispositivos=findViewById(R.id.lv_dispositivos);
         bt_sincronizar=findViewById(R.id.bt_sincronizar);
 
+        Toast.makeText(this, "test!!!",Toast.LENGTH_SHORT).show();
+
         String[] dispositivos={                             //cambiar a arralist de dispositivos !!!!!!!
                 "Dispositivo1",
                 "Dispositivo2",

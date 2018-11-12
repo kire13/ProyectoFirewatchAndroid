@@ -89,7 +89,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="Monitorizar"
+                android:onClick="Controlar"
                 android:text="Controlar " />
 
             <Button
@@ -97,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="Monitorizar"
+                android:onClick="Seguimiento"
                 android:text="Seguimiento" />
         </LinearLayout>
 

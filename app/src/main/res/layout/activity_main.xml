@@ -42,8 +42,8 @@
             android:id="@+id/tv_dispositivos"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:textAllCaps="true"
+          android:textAlignment="center"
+          android:textAllCaps="true"
             android:layout_weight="1"
             android:text="Dispositivos Sincronizados:" />
     </LinearLayout>

@@ -1,4 +1,4 @@
-package cl.firewatch.firewatch;
+package cl.firewatch.firewatch.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,24 +9,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HumoAdapter extends RecyclerView.Adapter<HumoAdapter.ViewHolderSectores> {
+import cl.firewatch.firewatch.R;
+
+public class HumedadAdapter extends RecyclerView.Adapter<HumedadAdapter.ViewHolderSectores> {
 
     ArrayList<String> sectores;
 
-    public HumoAdapter(ArrayList<String> sectores) {
+    public HumedadAdapter(ArrayList<String> sectores) {
         this.sectores = sectores;
     }
 
     @NonNull
     @Override
     public ViewHolderSectores onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_humo,null,false);
-        ViewHolderSectores viewHolderSectores =new ViewHolderSectores(view);
-        return viewHolderSectores;
+        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_humedad,null,false);
+        return new ViewHolderSectores(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderSectores holder, int position) {
+    public void onBindViewHolder(@NonNull HumedadAdapter.ViewHolderSectores holder, int position) {
         holder.setSectores(sectores.get(position));
     }
 
@@ -37,15 +38,15 @@ public class HumoAdapter extends RecyclerView.Adapter<HumoAdapter.ViewHolderSect
 
     public class ViewHolderSectores extends RecyclerView.ViewHolder {
 
-        TextView tv_humo;
+        TextView tv_humedad;
 
         public ViewHolderSectores(View itemView) {
             super(itemView);
-            tv_humo =itemView.findViewById(R.id.tv_humo);
+            tv_humedad=itemView.findViewById(R.id.tv_humedad);
         }
 
         public void setSectores(String sector) {
-            tv_humo.setText(sector);
+            tv_humedad.setText(sector);
         }
     }
 }

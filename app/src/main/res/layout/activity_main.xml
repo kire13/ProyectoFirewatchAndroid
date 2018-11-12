@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
@@ -14,7 +15,22 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
+        android:layout_gravity="center"
         app:srcCompat="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tv_dispositivos"
+            android:text="Dispositivos Sincronizados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lv_dispositivos"
@@ -34,11 +50,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="65dp"
-        android:text="Sincronizar"
-        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:drawableRight="@android:drawable/stat_sys_data_bluetooth"
         android:onClick="Sicronizar"
-        />
+        android:text="Sincronizar"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
 
 
-</RelativeLayout>
+</LinearLayout>

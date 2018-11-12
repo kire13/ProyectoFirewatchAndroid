@@ -1,4 +1,4 @@
-package cl.firewatch.firewatch;
+package cl.firewatch.firewatch.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,18 +9,22 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class TemperaturaAdapter extends RecyclerView.Adapter<TemperaturaAdapter.ViewHolderSectores> {
+import cl.firewatch.firewatch.R;
+
+public class HumoAdapter extends RecyclerView.Adapter<HumoAdapter.ViewHolderSectores> {
+
     ArrayList<String> sectores;
 
-    public TemperaturaAdapter(ArrayList<String> sectores) {
+    public HumoAdapter(ArrayList<String> sectores) {
         this.sectores = sectores;
     }
 
     @NonNull
     @Override
     public ViewHolderSectores onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_temperatura,null,false);
-        return new ViewHolderSectores(view);
+        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_humo,null,false);
+        ViewHolderSectores viewHolderSectores =new ViewHolderSectores(view);
+        return viewHolderSectores;
     }
 
     @Override
@@ -29,21 +33,21 @@ public class TemperaturaAdapter extends RecyclerView.Adapter<TemperaturaAdapter.
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount() {//tamaño total de la lista frfsdf TEST!!!!!!PUSH!!!
         return sectores.size();
     }
 
     public class ViewHolderSectores extends RecyclerView.ViewHolder {
-        TextView tv_temperatura;
+
+        TextView tv_humo;
 
         public ViewHolderSectores(View itemView) {
             super(itemView);
-
-            tv_temperatura=itemView.findViewById(R.id.tv_temperatura);
+            tv_humo =itemView.findViewById(R.id.tv_humo);
         }
 
         public void setSectores(String sector) {
-            tv_temperatura.setText(sector);
+            tv_humo.setText(sector);
         }
     }
 }

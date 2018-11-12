@@ -68,7 +68,7 @@ public class SwipeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_swipe, menu);
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
         return true;
     }
 

@@ -58,6 +58,7 @@ public class SwipeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("TEST!");
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -143,10 +144,7 @@ public class SwipeActivity extends AppCompatActivity
 
             switch (sectionNumber) {
                 case 1:
-//                    String NombreActividad = this.getClass().getSimpleName();
-
                     fragment = new MonitorFragment();
-
                     break;
                 case 2:
                     fragment = new ControlFragment();
@@ -193,6 +191,10 @@ public class SwipeActivity extends AppCompatActivity
             // Show 3 total pages.
             return 3;
         }
+    }
+
+    public void setTitulo(String titulo){
+        getSupportActionBar().setTitle(titulo);
     }
 
 }

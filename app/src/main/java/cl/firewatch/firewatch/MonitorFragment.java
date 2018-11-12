@@ -4,11 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -80,32 +86,41 @@ public class MonitorFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view =inflater.inflate(R.layout.fragment_monitor, container, false);
-
-        /*
-        rv_humo=view.findViewById(R.id.rv_humo);
-        rv_humedad=view.findViewById(R.id.rv_humedad);
-        rv_temperatura=view.findViewById(R.id.rv_temperatura);
-        rv_humo.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));//set horizontal list
-        rv_humedad.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        rv_temperatura.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-
-        sectores=new ArrayList<>();
-        for(int i=0;i<10;i++){
-            sectores.add(" Sector "+(i+1));
-        }
-        HumoAdapter humoAdapter=new HumoAdapter(sectores);
-        HumedadAdapter humedadAdapter=new HumedadAdapter(sectores);
-        TemperaturaAdapter temperaturaAdapter =new TemperaturaAdapter(sectores);
-        rv_humo.setAdapter(humoAdapter);
-        rv_temperatura.setAdapter(humedadAdapter);
-        rv_humedad.setAdapter(temperaturaAdapter);
-
-        */
         SetListHumo(view);
         SetListHumedad(view);
         SetListTemperatura(view);
         return view;
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_buscar, menu);
+        MenuItem item = menu.findItem(R.id.item_buscar);
+        SearchView searchView = new SearchView(((SwipeActivity)getActivity()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(item, searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Toast.makeText(getContext(),"Buscar!!!",Toast.LENGTH_SHORT).show();
+              }
+          }
+        );
     }
 
     // TODO: Rename method, update argument and hook method into UI event

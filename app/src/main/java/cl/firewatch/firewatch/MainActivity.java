@@ -1,6 +1,8 @@
 package cl.firewatch.firewatch;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,7 +48,31 @@ public class MainActivity extends Activity {
     }
 
     public void Sicronizar(View view) {//Cambiar a HOME
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+        AlertSincronizar();
+        //Intent intent = new Intent(this, HomeActivity.class);
+        //startActivity(intent);
     }
+
+    private void AlertSincronizar(){
+
+        final CharSequence[] opciones={"Aceptar","Cancelar"};
+        final AlertDialog.Builder alert=new AlertDialog.Builder(this);
+        alert.setTitle("Sincronizando con el Dispositivo");
+        alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
+    }
+
+
 }

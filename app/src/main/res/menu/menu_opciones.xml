@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--tool , opciones, se puede aplciar a otra toolbar-->
     <item
         android:id="@+id/item_home"
         android:icon="?android:attr/homeAsUpIndicator"
@@ -12,29 +13,25 @@
     <item
         android:id="@+id/item_velocidad"
         android:title="Velocidad"
-        app:showAsAction="never"
-        >
+        app:showAsAction="never">
 
     </item>
     <item
         android:id="@+id/item_sensores"
         android:title="Sensores"
-        app:showAsAction="never"
-        >
+        app:showAsAction="never">
 
     </item>
     <item
         android:id="@+id/item_alertas"
         android:title="Alertas"
-        app:showAsAction="never"
-        >
+        app:showAsAction="never">
 
     </item>
     <item
         android:id="@+id/item_registros"
         android:title="Registros"
-        app:showAsAction="never"
-        >
+        app:showAsAction="never">
 
     </item>
 

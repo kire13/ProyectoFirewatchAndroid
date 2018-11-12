@@ -74,6 +74,12 @@ public class SwipeActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        // METEDO DETECTAR BOTON DE HOME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Intent intent=getIntent();
+        if(intent.getExtras()!=null){
+            int pantalla=intent.getIntExtra("pantalla",0);
+            mViewPager.setCurrentItem(mViewPager.getCurrentItem()+pantalla, true);
+        }
 
     }
 

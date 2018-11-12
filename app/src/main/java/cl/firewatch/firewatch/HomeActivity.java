@@ -64,5 +64,17 @@ public class HomeActivity extends AppCompatActivity {
     }
     //
 
+    public void Controlar(View view) {
+        Intent intent = new Intent(this, SwipeActivity.class);
+        intent.putExtra("pantalla",1);
+        startActivity(intent);
+    }
+
+    public void Seguimiento(View view) {
+        Intent intent = new Intent(this, SwipeActivity.class);
+        intent.putExtra("pantalla",2);
+        startActivity(intent);
+    }
+
 
 }

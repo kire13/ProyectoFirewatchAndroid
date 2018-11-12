@@ -118,6 +118,8 @@ public class MonitorFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+//        Freddy
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

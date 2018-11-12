@@ -1,21 +1,31 @@
 package cl.firewatch.firewatch;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.view.Window;
 
 public class HomeActivity extends AppCompatActivity {
     //pantalla MAIN de 3 botones
+    FragmentManager fManager = getSupportFragmentManager();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+//        String NombreActividad = this.getClass().getSimpleName();
+        String DispSeleccionado = "";
+
+        getSupportActionBar().setTitle("Dispositivo :" + "#" + DispSeleccionado);
     }
 
     public void Monitorizar(View view) {
@@ -29,6 +39,9 @@ public class HomeActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_home_main, menu);
         return super.onCreateOptionsMenu(menu);
+//// titulo
+
+//        getSupportActionBar().setTitle("Whatever title");
 
 
     }
@@ -40,28 +53,16 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent Qintnto = new Intent(this, HomeActivity.class);
 
-        String nombre = this.getClass().getSimpleName();
+        String NombreActividad = this.getClass().getSimpleName();
 
-        Toast.makeText(this, "nombre es:" + nombre, Toast.LENGTH_SHORT).show();
-        if (nombre.equalsIgnoreCase("HomeActivity")) {
+        if (NombreActividad.equalsIgnoreCase("HomeActivity")) {
         } else {
             startActivity(Qintnto);
         }
-//        MEtodo1();
         return super.onOptionsItemSelected(item);
 
     }
+    //
 
-
-//    public void MEtodo1() {
-//        Activity ACtividad = new Activity();
-//        ACtividad.getParent();
-//
-//        if(ACtividad  MainActivity.class){
-//            Toast.makeText(ACtividad, "ZK:" + ACtividad.toString(), Toast.LENGTH_SHORT).show();
-//
-//        }
-//
-//    }
 
 }

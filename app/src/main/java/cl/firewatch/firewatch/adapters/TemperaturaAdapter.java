@@ -1,4 +1,4 @@
-package cl.firewatch.firewatch;
+package cl.firewatch.firewatch.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,42 +9,43 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HumedadAdapter extends RecyclerView.Adapter<HumedadAdapter.ViewHolderSectores> {
+import cl.firewatch.firewatch.R;
 
+public class TemperaturaAdapter extends RecyclerView.Adapter<TemperaturaAdapter.ViewHolderSectores> {
     ArrayList<String> sectores;
 
-    public HumedadAdapter(ArrayList<String> sectores) {
+    public TemperaturaAdapter(ArrayList<String> sectores) {
         this.sectores = sectores;
     }
 
     @NonNull
     @Override
     public ViewHolderSectores onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_humedad,null,false);
+        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_temperatura,null,false);
         return new ViewHolderSectores(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HumedadAdapter.ViewHolderSectores holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderSectores holder, int position) {
         holder.setSectores(sectores.get(position));
     }
 
     @Override
-    public int getItemCount() {//tamaño total de la lista frfsdf TEST!!!!!!PUSH!!!
+    public int getItemCount() {
         return sectores.size();
     }
 
     public class ViewHolderSectores extends RecyclerView.ViewHolder {
-
-        TextView tv_humedad;
+        TextView tv_temperatura;
 
         public ViewHolderSectores(View itemView) {
             super(itemView);
-            tv_humedad=itemView.findViewById(R.id.tv_humedad);
+
+            tv_temperatura=itemView.findViewById(R.id.tv_temperatura);
         }
 
         public void setSectores(String sector) {
-            tv_humedad.setText(sector);
+            tv_temperatura.setText(sector);
         }
     }
 }

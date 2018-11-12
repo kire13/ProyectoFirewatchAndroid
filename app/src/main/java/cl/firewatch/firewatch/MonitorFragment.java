@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import cl.firewatch.firewatch.adapters.HumedadAdapter;
+import cl.firewatch.firewatch.adapters.HumoAdapter;
+import cl.firewatch.firewatch.adapters.TemperaturaAdapter;
+
 
 /**
  * A simple {@link Fragment} subclass.

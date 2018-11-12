@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 //        String NombreActividad = this.getClass().getSimpleName();
         String DispSeleccionado = "";
-
+//sda
         getSupportActionBar().setTitle("Dispositivo :" + "#" + DispSeleccionado);
     }
 

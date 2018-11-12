@@ -19,12 +19,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 //        String NombreActividad = this.getClass().getSimpleName();
         String DispSeleccionado = "";
-//sda
         getSupportActionBar().setTitle("Dispositivo :" + "#" + DispSeleccionado);
     }
 
@@ -66,13 +64,13 @@ public class HomeActivity extends AppCompatActivity {
 
     public void Controlar(View view) {
         Intent intent = new Intent(this, SwipeActivity.class);
-        intent.putExtra("pantalla",1);
+        intent.putExtra("pantalla", 1);
         startActivity(intent);
     }
 
     public void Seguimiento(View view) {
         Intent intent = new Intent(this, SwipeActivity.class);
-        intent.putExtra("pantalla",2);
+        intent.putExtra("pantalla", 2);
         startActivity(intent);
     }
 

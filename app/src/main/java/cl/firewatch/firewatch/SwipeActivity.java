@@ -1,5 +1,6 @@
 package cl.firewatch.firewatch;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class SwipeActivity extends AppCompatActivity
-        implements MonitorFragment.OnFragmentInteractionListener,ControlFragment.OnFragmentInteractionListener,SeguirFragment.OnFragmentInteractionListener {
+        implements MonitorFragment.OnFragmentInteractionListener, ControlFragment.OnFragmentInteractionListener, SeguirFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -68,8 +70,11 @@ public class SwipeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_opciones, menu);
-        return true;
+//        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+//        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_home_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -84,6 +89,9 @@ public class SwipeActivity extends AppCompatActivity
             return true;
         }
 
+//        return super.onOptionsItemSelected(item);
+        Intent Qintnto = new Intent(this, HomeActivity.class);
+        startActivity(Qintnto);
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,15 +118,18 @@ public class SwipeActivity extends AppCompatActivity
          * number.
          */
         public static Fragment newInstance(int sectionNumber) {
-            Fragment fragment=null;
+            Fragment fragment = null;
 
-            switch (sectionNumber){
-                case 1: fragment=new MonitorFragment();
-                break;
-                case 2: fragment=new ControlFragment();
-                break;
-                case 3: fragment=new SeguirFragment();
-                break;
+            switch (sectionNumber) {
+                case 1:
+                    fragment = new MonitorFragment();
+                    break;
+                case 2:
+                    fragment = new ControlFragment();
+                    break;
+                case 3:
+                    fragment = new SeguirFragment();
+                    break;
             }
             return fragment;
 
@@ -157,4 +168,5 @@ public class SwipeActivity extends AppCompatActivity
             return 3;
         }
     }
+
 }

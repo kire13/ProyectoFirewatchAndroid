@@ -1,5 +1,6 @@
 package cl.firewatch.firewatch;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
     //pantalla MAIN de 3 botones
@@ -37,8 +39,29 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         Intent Qintnto = new Intent(this, HomeActivity.class);
-        startActivity(Qintnto);
+
+        String nombre = this.getClass().getSimpleName();
+
+        Toast.makeText(this, "nombre es:" + nombre, Toast.LENGTH_SHORT).show();
+        if (nombre.equalsIgnoreCase("HomeActivity")) {
+        } else {
+            startActivity(Qintnto);
+        }
+//        MEtodo1();
         return super.onOptionsItemSelected(item);
 
     }
+
+
+//    public void MEtodo1() {
+//        Activity ACtividad = new Activity();
+//        ACtividad.getParent();
+//
+//        if(ACtividad  MainActivity.class){
+//            Toast.makeText(ACtividad, "ZK:" + ACtividad.toString(), Toast.LENGTH_SHORT).show();
+//
+//        }
+//
+//    }
+
 }

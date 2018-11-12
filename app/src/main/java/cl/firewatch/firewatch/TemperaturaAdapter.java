@@ -9,20 +9,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HumoAdapter extends RecyclerView.Adapter<HumoAdapter.ViewHolderSectores> {
-
+public class TemperaturaAdapter extends RecyclerView.Adapter<TemperaturaAdapter.ViewHolderSectores> {
     ArrayList<String> sectores;
 
-    public HumoAdapter(ArrayList<String> sectores) {
+    public TemperaturaAdapter(ArrayList<String> sectores) {
         this.sectores = sectores;
     }
 
     @NonNull
     @Override
     public ViewHolderSectores onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_humo,null,false);
-        ViewHolderSectores viewHolderSectores =new ViewHolderSectores(view);
-        return viewHolderSectores;
+        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.list_temperatura,null,false);
+        return new ViewHolderSectores(view);
     }
 
     @Override
@@ -31,21 +29,21 @@ public class HumoAdapter extends RecyclerView.Adapter<HumoAdapter.ViewHolderSect
     }
 
     @Override
-    public int getItemCount() {//tamaño total de la lista frfsdf TEST!!!!!!PUSH!!!
+    public int getItemCount() {
         return sectores.size();
     }
 
     public class ViewHolderSectores extends RecyclerView.ViewHolder {
-
-        TextView tv_humo;
+        TextView tv_temperatura;
 
         public ViewHolderSectores(View itemView) {
             super(itemView);
-            tv_humo =itemView.findViewById(R.id.tv_humo);
+
+            tv_temperatura=itemView.findViewById(R.id.tv_temperatura);
         }
 
         public void setSectores(String sector) {
-            tv_humo.setText(sector);
+            tv_temperatura.setText(sector);
         }
     }
 }

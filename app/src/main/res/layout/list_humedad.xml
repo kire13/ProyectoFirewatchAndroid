@@ -5,8 +5,8 @@
     android:orientation="vertical"
     >
     <TextView
-        android:hint="sectores humo"
-        android:id="@+id/tv_humo"
+        android:hint="sectores humedad"
+        android:id="@+id/tv_humedad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

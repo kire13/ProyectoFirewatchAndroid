@@ -1,5 +1,6 @@
 package cl.firewatch.firewatch;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,8 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.StaticLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +23,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class SwipeActivity extends AppCompatActivity
-        implements MonitorFragment.OnFragmentInteractionListener,ControlFragment.OnFragmentInteractionListener,SeguirFragment.OnFragmentInteractionListener {
+        implements MonitorFragment.OnFragmentInteractionListener, ControlFragment.OnFragmentInteractionListener, SeguirFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,15 +39,26 @@ public class SwipeActivity extends AppCompatActivity
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+//   String tiulo = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        getSupportActionBar().setTitle
+///
+//        String NombreActividad = this.getClass().getSimpleName();
+//        String tiulo = getSupportFragmentManager().beginTransaction().getClass().getSimpleName();
+//        Strint titulo = getFragmentManager().getFragments().getClass().getSimpleName();
+//        getSupportActionBar().setTitle("mit tutlo" + tiulo);
+//        getSupportActionBar().setSubtitle("sutitulo" + tiulo);
+        ///
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("TEST!");
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -61,6 +75,12 @@ public class SwipeActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        // METEDO DETECTAR BOTON DE HOME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Intent intent=getIntent();
+        if(intent.getExtras()!=null){
+            int pantalla=intent.getIntExtra("pantalla",0);
+            mViewPager.setCurrentItem(mViewPager.getCurrentItem()+pantalla, true);
+        }
 
     }
 
@@ -68,8 +88,11 @@ public class SwipeActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_swipe, menu);
-        return true;
+//        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+//        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_home_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -80,10 +103,13 @@ public class SwipeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.item_home) {
             return true;
         }
 
+//        return super.onOptionsItemSelected(item);
+        Intent Qintnto = new Intent(this, HomeActivity.class);
+        startActivity(Qintnto);
         return super.onOptionsItemSelected(item);
     }
 
@@ -96,6 +122,7 @@ public class SwipeActivity extends AppCompatActivity
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -103,22 +130,30 @@ public class SwipeActivity extends AppCompatActivity
         private static final String ARG_SECTION_NUMBER = "section_number";
 
         public PlaceholderFragment() {
+
         }
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static Fragment newInstance(int sectionNumber) {
-            Fragment fragment=null;
 
-            switch (sectionNumber){
-                case 1: fragment=new MonitorFragment();
-                break;
-                case 2: fragment=new ControlFragment();
-                break;
-                case 3: fragment=new SeguirFragment();
-                break;
+        public static Fragment newInstance(int sectionNumber) {
+
+            Fragment fragment = null;
+
+            switch (sectionNumber) {
+                case 1:
+                    fragment = new MonitorFragment();
+                    break;
+                case 2:
+                    fragment = new ControlFragment();
+
+                    break;
+                case 3:
+                    fragment = new SeguirFragment();
+
+                    break;
             }
             return fragment;
 
@@ -157,4 +192,9 @@ public class SwipeActivity extends AppCompatActivity
             return 3;
         }
     }
+
+    public void setTitulo(String titulo){
+        getSupportActionBar().setTitle(titulo);
+    }
+
 }

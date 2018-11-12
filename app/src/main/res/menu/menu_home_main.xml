@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HomeActivity">
+
     <item
-        android:id="@+id/bt_opciones"
+        android:id="@+id/bt_home"
         android:icon="@drawable/ic_home"
         android:title="home"
         app:showAsAction="always">
 
     </item>
-    <!--as-->
+    <item
+        android:id="@+id/btnada"
+        android:title=":"
+        app:showAsAction="always">
 
+    </item>
 
 </menu>

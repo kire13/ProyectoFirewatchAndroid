@@ -7,6 +7,21 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
+
+    <!--//barra padre y toolbar-->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="0dp"></android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/toolbar_main"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+    <!--fin barra padre y toolaba.-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -71,7 +86,6 @@
 
             <Button
                 android:id="@+id/bt_controlar"
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -80,7 +94,6 @@
 
             <Button
                 android:id="@+id/bt_seguimiento"
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
